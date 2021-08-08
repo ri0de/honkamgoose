@@ -1,6 +1,6 @@
 const Command = require("../Command");
 
-class SupportCommand {
+class SupportCommand extends Command {
     constructor(client) {
         super(client, {
             name: ["support", "server"]
