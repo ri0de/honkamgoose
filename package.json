@@ -1,0 +1,28 @@
+{
+    "name": "honk-am-goose",
+    "description": "A Discord Bot based on the game \"Untitled Goose\"",
+    "version": "1.0.0",
+    "main": "src/index.js",
+    "author": {
+        "name": "Riode"
+    },
+    "keywords": [
+        "honk",
+        "goose",
+        "untitled"
+    ],
+    "dependencies": {
+        "axios": "^0.21.1",
+        "discord.js": "github:discordjs/discord.js",
+        "moment": "^2.29.1",
+        "moment-duration-format": "^2.3.2"
+    },
+    "repository": {
+        "url": "https://github.com/ri0de/discord-honkamgoose-bot"
+    },
+    "scripts": {
+        "run": "node src/index.js",
+        "run:dev": "nodemon src/index.js"
+    },
+    "license": "MIT"
+}
