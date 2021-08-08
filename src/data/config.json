@@ -8,5 +8,6 @@
     "prefix": "h=",
     "riode": {
         "id": "873138196878336061"
-    }
+    },
+    "mongodb": "Put your mongodb url here"
 }
