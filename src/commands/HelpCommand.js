@@ -24,7 +24,7 @@ class Help extends Command {
                     fields: [
                         {
                             name: `Commands[${global.commands.size}]`,
-                            value: "`honk` `invite` `uptime` `ping`"
+                            value: "`honk` `invite` `uptime` `ping` `support`"
                         }
                     ],
                     footer: {
