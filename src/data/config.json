@@ -1,0 +1,12 @@
+{
+    "token": "Put your application token here",
+    "directory": {
+        "commands": "/commands"
+    },
+    "channel-log": "873207346833272903",
+    "invite": "https://discord.com/api/oauth2/authorize?client_id=873195310262919179&permissions=52288&scope=bot%20applications.commands",
+    "prefix": "h=",
+    "riode": {
+        "id": "873138196878336061"
+    }
+}
