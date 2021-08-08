@@ -66,6 +66,16 @@ client.on("guildDelete", async (guild) => {
 });
 
 /*
+Connects to mongodb
+*/
+require("mongoose").connect(process.env.mongodb || client.config.mongodb, {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
+});
+
+/*
 Sets it as global[commands]
 */
 global.commands = commands;
