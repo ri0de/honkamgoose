@@ -19,7 +19,7 @@
         "mongoose": "^5.13.5"
     },
     "repository": {
-        "url": "https://github.com/ri0de/discord-honkamgoose-bot"
+        "url": "https://github.com/ri0de/honkamgoose"
     },
     "scripts": {
         "run": "node src/index.js",
