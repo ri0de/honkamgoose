@@ -1,8 +1,5 @@
-const { Message } = require("discord.js");
+const { SchemaBlacklist } = require("../Schema");
 const Command = require("../Command");
-
-const path = require("path");
-const fs = require("fs");
 
 class Blacklist extends Command {
     constructor(client) {
@@ -15,54 +12,41 @@ class Blacklist extends Command {
      * 
      * @param {Message} message 
      */
-    async execute(message, arguement) {
+    async execute(message, argument) {
 
         if (message.author.id !== this.client.config.riode.id) {
             return;
         };
 
-        if (!arguement[0]) {
+        if (!argument[0]) {
+            return;
+        };
+        
+        if (argument == this.client.config.riode.id) {
             return;
         };
 
-        const root = path.dirname(require.main.filename || process.mainModule.filename);
-        const filePath = root + "\\data\\blacklist.json";
+        let getUser = this.client.users.cache.get(argument[0]);
+        if (getUser) {
 
-        let file = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-        let user = this.client.users.cache.get(arguement[0]);
-
-        if (file["blacklist"].includes(arguement[0])) {
-
-            file["blacklist"] = removeFromArray(file["blacklist"], arguement[0]);
-            fs.writeFile(filePath, JSON.stringify(file, null, 2), error => {
-                if (error) {
-                    return console.log(error);
-                };
-            });
-
+            const user = await SchemaBlacklist.findOne({ User: getUser.id});
             if (user) {
-                warn(user, 2);
-                log(this.client, user, 2);
-            };
+                message.channel.send("✅ The user is no longer on blacklist");
+                warn(getUser, 2);
+                log(this.client, getUser, 2);
 
-            message.channel.send("✅ The user is no longer on blacklist");
+                return user.delete();
+            } else {
+                const addToBlacklist = new SchemaBlacklist({ User: getUser.id, Time: Date.now()});
+                message.channel.send("✅ The user is now on blacklist");
+                warn(getUser, 1);
+                log(this.client, getUser, 1);
+
+                return addToBlacklist.save();
+            };
 
         } else {
-
-            file["blacklist"].push(arguement[0]);
-
-            fs.writeFile(filePath, JSON.stringify(file, null, 2), error => {
-                if (error) {
-                    return console.log(error);
-                };
-            });
-
-            if (user) {
-                warn(user, 1);
-                log(this.client, user, 1);
-            };
-
-            message.channel.send("✅ The user is now on blacklist");
+            return message.channel.send(":x: Couldn't find out that user.");
         };
     };
 };
